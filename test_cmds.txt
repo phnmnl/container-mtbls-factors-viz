@@ -1,0 +1,3 @@
+which Rscript
+which makeParallelCoordsPlot.R 
+which runTest1.sh
