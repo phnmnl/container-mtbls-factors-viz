@@ -32,7 +32,7 @@ if (!is.null(opt$study)) {
   study <- fromJSON(opt$isaFactorsJSON)
 }
 
-colnames(study)[! colnames(study) %in% c("name", "files", "mafFile", "id")]->factors_no_name
+colnames(study)[! colnames(study) %in% c("name", "files", "mafFile", "id", "metabolites")]->factors_no_name
 
 study.dt<-data.table(study,key = factors_no_name)
 study.dt[, c("files","mafFile", "id"):=NULL]
