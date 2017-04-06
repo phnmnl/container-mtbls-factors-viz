@@ -1,4 +1,4 @@
-<tool id="mtbls-factors-viz" name="MTBLS factors viz" version="0.2">
+<tool id="mtbls-factors-viz" name="MetaboLights Factors Viz" version="0.3">
 <stdio>
 <exit_code range="1:" />
 </stdio>
@@ -17,8 +17,8 @@
 <inputs>
     <conditional name="input_type_conditional">
             <param name="input_type" type="select" label="Input Type">
-                <option value="mtbls-id" selected="true">Single Dataset</option>
-                <option value="isa-factors-json">Paired Collection</option>
+                <option value="mtbls-id" selected="true">MetaboLights Study Identifier</option>
+                <option value="isa-factors-json">ISA-tab Factors table as JSON file</option>
             </param>
             <when value="mtbls-id">
                  <param name="mtbls_id" type="text" label="MetaboLights Study Identifier" help="MTBLS ID available at MetaboLights Parallele Coordinates at ftp://ftp.ebi.ac.uk/pub/databases/metabolights/derived/parallel_coordinates/"/>
