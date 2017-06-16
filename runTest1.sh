@@ -1,9 +1,9 @@
 #!/bin/bash
 
-apt-get update && apt-get install -y --no-install-recommends wget
+apk -U add wget ca-certificates
 mkdir /tmp/study-dir
 cd /tmp/study-dir
-wget --no-check-certificate https://github.com/phnmnl/container-mtbls-factors-viz/example_json.js
+wget https://raw.githubusercontent.com/phnmnl/container-mtbls-factors-viz/develop/example_json.js 
 
 makeParallelCoordsPlot.R -i example_json.js
 
