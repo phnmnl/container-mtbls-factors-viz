@@ -8,25 +8,31 @@ library(optparse)
 # parse parameters
 option_list = list(
   make_option(c("-s", "--study"), type="character", default=NULL, help="MetaboLights Study", metavar="character"),
+  make_option(c("-i", "--isaFactorsJSON"), type="character", default=NULL, help="A path to an ISA Factor JSON"),
   make_option(c("-o", "--outputPath"), type="character", default=getwd(), help="Set output path for result files")
 )
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
-
-if (is.null(opt$study)){
+if (is.null(opt$study) && is.null(opt$isaFactorsJSON)){
   print_help(opt_parser)
-  stop("Please provide a MetaboLights study", call.=FALSE)
+  stop("Please provide a MetaboLights study (-s) or a ISA-tab directory (-i)", call.=FALSE)
 }
 
+study<-NULL
 # download the data
-mtbls_id <- opt$study
-output_path <- opt$outputPath
-ftp_path <- "ftp://ftp.ebi.ac.uk/pub/databases/metabolights/derived/parallel_coordinates/"
-json_file_path <- paste(output_path,"study_pc.json",sep="/")
-download.file(paste(ftp_path,mtbls_id,".json",sep=""),destfile = json_file_path)
-study <- fromJSON(json_file_path)
-colnames(study)[! colnames(study) %in% c("name", "files", "mafFile", "id")]->factors_no_name
+if (!is.null(opt$study)) {
+  mtbls_id <- opt$study
+  output_path <- opt$outputPath
+  ftp_path <- "ftp://ftp.ebi.ac.uk/pub/databases/metabolights/derived/parallel_coordinates/"
+  json_file_path <- paste(output_path,"study_pc.json",sep="/")
+  download.file(paste(ftp_path,mtbls_id,".json",sep=""),destfile = json_file_path)
+  study <- fromJSON(json_file_path)
+} else if(!is.null(opt$isaFactorsJSON)) {
+  study <- fromJSON(opt$isaFactorsJSON)
+}
+
+colnames(study)[! colnames(study) %in% c("name", "files", "mafFile", "id", "metabolites")]->factors_no_name
 
 study.dt<-data.table(study,key = factors_no_name)
 study.dt[, c("files","mafFile", "id"):=NULL]
@@ -42,7 +48,7 @@ sober_theme <- theme(axis.line=element_blank(),
       panel.grid.minor=element_blank(),
       plot.background=element_blank())
 
-pdf_output <- paste( output_path, "factors_plot.pdf", sep="/")
+pdf_output <- paste( opt$outputPath, "factors_plot.pdf", sep="/")
 pdf(file = pdf_output, paper = "a4r")
 
 if(length(factors_no_name)==1) 
@@ -55,5 +61,5 @@ if(length(factors_no_name)==1)
 
 dev.off()
 
-table_output <- paste( output_path, "factors_table.tab", sep="/")
+table_output <- paste( opt$outputPath, "factors_table.tab", sep="/")
 write.table(study.dt.summary, sep = "\t", row.names = FALSE, file = table_output)
