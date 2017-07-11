@@ -1,10 +1,10 @@
 
 # MTBLS Factors Viz 
-Version: 0.3.0 
+Version: 0.4.0 
 
 ## Short Description
 
-A container image for generating images to represent factors inside an ISA-Tab document or MTBLS study. 
+Creates parallel sets plots to show factor values distributions in samples inside an ISA-Tab document or MTBLS study. 
 
 ## Description
 
@@ -22,13 +22,14 @@ An R-based visualization for factors and their values as encoded in an ISA-Tab f
 
 ## Screenshots
 
-Sample plot produced by mtbls-factors-viz, showing factors values for a toy problem.
+Sample plot produced by mtbls-factors-viz, showing factors values for MetaboLights Study MTBLS32.
 ![screenshot](screenshots/s1.png)
+Each column on the graph shows a factor (the factor names are at the x axis label of the graph). The y-axis stands for the amount of samples. In this case, Dose=0 has 4 samples and Dose=280 has roughly 24 samples. Dose and Treatment seem to be redundant. All samples at Dose=0 (Treatment=PBS) are at Time=19 (which accounts for half of all Time=19 samples).
 
 ## Tool Authors
 
 - [Pablo Moreno](https://github.com/pcm32)
-- [David Johnson]()
+- [David Johnson](https://github.com/djcomlab)
 
 ## Container Contributors
 
@@ -76,7 +77,3 @@ or, if there is a factors summary JSON file on `factor_summary.json` in your wor
 docker run -it -v $PWD:/data container-registry.phenomenal-h2020.eu/phnmnl/mtbls-factors-viz -i /data/factor_summary.json -o /data
 ```
 
-
-## Publications
-
-- 
