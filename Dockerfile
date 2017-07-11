@@ -2,7 +2,7 @@ FROM artemklevtsov/r-alpine:3.3.1
 
 MAINTAINER PhenoMeNal-H2020 Project ( phenomenal-h2020-users@googlegroups.com )
 
-LABEL software.version="0.3"
+LABEL software.version="0.4"
 LABEL version="0.3"
 LABEL software="mtbls-factor-vis"
 LABEL base.image="artemklevtsov/r-alpine:3.3.1"

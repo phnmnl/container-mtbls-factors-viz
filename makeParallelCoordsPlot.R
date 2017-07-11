@@ -34,6 +34,10 @@ if (!is.null(opt$study)) {
 
 colnames(study)[! colnames(study) %in% c("name", "files", "mafFile", "id", "metabolites")]->factors_no_name
 
+if(is.null(factors_no_name)) {
+  stop(paste("The MetaboLights study provided seems to have no factors, please contact the MetaboLights database referencing study ",mtbls_id,".",sep=""))
+}
+
 study.dt<-data.table(study,key = factors_no_name)
 study.dt[, c("files","mafFile", "id"):=NULL]
 study.dt[,list(Frequency = .N),by=factors_no_name]->study.dt.summary
@@ -54,7 +58,10 @@ pdf(file = pdf_output, paper = "a4r")
 if(length(factors_no_name)==1) 
 {
   # if only one factor, then use stacked bar plot, otherwise, ggparallel
-  ggplot(study.dt.summary, aes(x = eval(factors_no_name[1]), fill = eval(factors_no_name[1]), y = Frequency)) + geom_bar(stat="identity")
+  study.dt.summary[,posStack := cumsum(Frequency) - Frequency/2,]
+  ggplot(study.dt.summary, aes(colnames(study.dt.summary)[1],y=Frequency)) -> g
+  g + geom_bar(aes(fill=study.dt.summary[[1]]), stat = "identity", position=position_stack(reverse = TRUE)) + 
+    labs(x="Factor") + geom_text(aes(label=study.dt.summary[[1]],y=posStack),colour="white",fontface="bold") + sober_theme     
 } else {
   ggparallel(study.dt.summary, vars = list(factors_no_name), weight = "Frequency", text.angle = 0) + sober_theme
 }
