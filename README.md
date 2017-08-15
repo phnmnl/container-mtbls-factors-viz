@@ -34,6 +34,7 @@ Each column on the graph shows a factor (the factor names are at the x axis labe
 ## Container Contributors
 
 - [Pablo Moreno](https://github.com/pcm32) (EMBL-EBI)
+- [David Johnson](https://github.com/djcomlab) (University of Oxford)
 
 ## Website
 
@@ -77,3 +78,8 @@ or, if there is a factors summary JSON file on `factor_summary.json` in your wor
 docker run -it -v $PWD:/data container-registry.phenomenal-h2020.eu/phnmnl/mtbls-factors-viz -i /data/factor_summary.json -o /data
 ```
 
+## Publications
+
+- Haug, K., Salek, R. M., Conesa, P., Hastings, J., de Matos, P., Rijnbeek, M., ... & Maguire, E. (2012). MetaboLights - an open-access general-purpose repository for metabolomics studies and associated meta-data. Nucleic acids research, gks1004.
+- Sansone, Susanna-Assunta, Rocca-Serra, Philippe, Gonzalez-Beltran, Alejandra, Johnson, David, &amp; ISA Community. (2016, October 28). ISA Model and Serialization Specifications 1.0. Zenodo. http://doi.org/10.5281/zenodo.163640
+- Sansone, Susanna-Assunta, et al. (2012, January 27). Towards interoperable bioscience data. Nature Genetics 44, 121–126. http://doi.org/10.1038/ng.1054
