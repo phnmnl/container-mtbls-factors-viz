@@ -3,7 +3,7 @@ FROM artemklevtsov/r-alpine:3.3.1
 MAINTAINER PhenoMeNal-H2020 Project ( phenomenal-h2020-users@googlegroups.com )
 
 LABEL software.version="0.5"
-LABEL version="0.4"
+LABEL version="0.4.1"
 LABEL software="isa_factors_viz"
 LABEL base.image="artemklevtsov/r-alpine:3.3.1"
 LABEL description="An R-based depiction for factors and their values in ISA studies"
