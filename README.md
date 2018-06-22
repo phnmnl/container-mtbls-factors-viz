@@ -1,6 +1,6 @@
 
 # MTBLS Factors Viz 
-Version: 0.4.0 
+Version: 0.5.0 
 
 ## Short Description
 
@@ -14,7 +14,7 @@ An R-based visualization for factors and their values as encoded in an ISA-Tab f
 
 ## Functionality
 
-- Other Tools
+- Data Management / Study Metadata Visualization
 
 ## Approaches
   
@@ -35,6 +35,7 @@ Each column on the graph shows a factor (the factor names are at the x axis labe
 
 - [Pablo Moreno](https://github.com/pcm32) (EMBL-EBI)
 - [David Johnson](https://github.com/djcomlab) (University of Oxford)
+- [Philippe Rocca-Serra](https://github.com/proccaserra) (University of Oxford)
 
 ## Website
 
